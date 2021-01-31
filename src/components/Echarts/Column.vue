@@ -1,5 +1,5 @@
 <template>
-  <div ref="main" style="height:600px"></div>
+  <div ref="main" style="height:600px" class="echart"></div>
 </template>
 <script>
 import echarts from "echarts";
@@ -50,3 +50,8 @@ export default {
   }
 };
 </script>
+<style lang="less">
+.echart {
+  margin: 50px 30px;
+}
+</style>

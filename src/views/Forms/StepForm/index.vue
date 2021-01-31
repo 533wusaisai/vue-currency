@@ -6,7 +6,7 @@
   </div>
 </template>
 <script>
-// import logo from "../../../assets/logo.svg";
+import logo from "../../../assets/logo.svg";
 import Logo from "../../../assets/logo.svg";
 export default {
   components: {
@@ -14,7 +14,7 @@ export default {
   },
   data() {
     return {
-      // logo
+      logo
     };
   }
 };

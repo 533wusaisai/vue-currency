@@ -13,23 +13,26 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/user",
+    path: "/login",
     component: { render: h => h("router-view") },
     hidenInMenu: true,
+    meta: {
+      auth: true
+    },
     children: [
       {
-        path: "/user",
+        path: "/login",
         redirect: "/user/login"
       },
       {
         path: "/user/login",
-        name: "Login",
+        name: "login",
         component: () =>
           import(/* webpackChunkName: "user" */ "../views/User/Login")
       },
       {
         path: "/user/register",
-        name: "Register",
+        name: "register",
         component: () =>
           import(/* webpackChunkName: "register" */ "../views/User/Register")
       }
@@ -38,7 +41,8 @@ const routes = [
   {
     path: "/",
     meta: {
-      authority: ["user", "admin"]
+      authority: ["user", "admin"],
+      auth: true
     },
     component: () =>
       import(/* webpackChunkName: "layouts" */ "../layouts/BasicLayout"),
@@ -136,6 +140,28 @@ const routes = [
             ]
           }
         ]
+      },
+      {
+        path: "/diction",
+        name: "diction",
+        // component: { render: h => h("router-view") },
+        component: () =>
+          import(
+            /* webpackChunkName: "diction" */ "../views/Dictionor/diction.vue"
+          ),
+        // children: [
+        //   {
+        //     path: "/diction/user",
+        //     component: () =>
+        //       import(
+        //         /* webpackChunkName: "diction" */ "../views/Dictionor/diction.vue"
+        //       )
+        //   }
+        // ],
+        meta: {
+          icon: "user",
+          title: "权限中心"
+        }
       }
     ]
   },
@@ -152,6 +178,12 @@ const routes = [
     component: NoPage
   }
 ];
+// 解决重复点击出现报错信息
+const originalPush = VueRouter.prototype.push;
+
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err);
+};
 
 const router = new VueRouter({
   mode: "history",

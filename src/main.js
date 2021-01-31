@@ -2,9 +2,16 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+// 时间处理
+import moment from "moment";
+import "moment/locale/zh-cn";
 
-// import Antd from "ant-design-vue";
-// Vue.use(Antd);
+// mock 数据
+// eslint-disable-next-line no-unused-vars
+import mock from "../mock/index";
+Vue.filter("formDate", val => {
+  return moment(val).format("dddd");
+});
 import {
   Button,
   Layout,
@@ -13,7 +20,13 @@ import {
   Radio,
   Menu,
   Form,
-  Input
+  Input,
+  Checkbox,
+  Dropdown,
+  Table,
+  Tag,
+  Divider,
+  Alert
 } from "ant-design-vue";
 // 引入注册权限控制
 import Authorized from "@/components/Authorized.vue"; // 权限
@@ -27,12 +40,23 @@ Vue.use(Radio);
 Vue.use(Menu);
 Vue.use(Form);
 Vue.use(Input);
+Vue.use(Checkbox);
+Vue.use(Dropdown);
+Vue.use(Table);
+Vue.use(Tag);
+Vue.use(Divider);
+Vue.use(Alert);
+
+// 图标处理
 const IconFont = Icon.createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/font_2348052_kqmrswa2wr.js"
 });
-Vue.config.productionTip = false;
-Vue.component("Authorized", Authorized);
 Vue.component("IconFont", IconFont);
+
+Vue.config.productionTip = false;
+//权限注册
+Vue.component("Authorized", Authorized);
+
 new Vue({
   router,
   store,

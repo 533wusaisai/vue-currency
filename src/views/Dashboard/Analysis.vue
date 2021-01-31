@@ -1,11 +1,17 @@
 <template>
-  <div>
+  <div class="echart">
     <Echarts :option="chartOptions" />
+    <a-button @click="login('wu')">Mixins</a-button>
   </div>
 </template>
 <script>
 import random from "lodash/random";
 import Echarts from "@/components/Echarts/Column.vue";
+import { request } from "../../api/request.js";
+// import API_URL from "@/api/apiUrl";
+import Minxins from "../../mixin";
+
+// import { request } from "../../api/http";
 export default {
   components: {
     Echarts
@@ -34,7 +40,23 @@ export default {
       }
     };
   },
-  methods: {},
+  mixins: [Minxins],
+  created() {
+    // this.daa();
+    this.dbb();
+  },
+  methods: {
+    // daa() {
+    //   request(API_URL.loginIn).then(res => {
+    //     console.log(res);
+    //   });
+    // },
+    dbb() {
+      request("http://localhost:8080/login").then(res => {
+        console.log(res);
+      });
+    }
+  },
   mounted() {
     this.interval = setInterval(() => {
       this.chartOptions.series[0].data = this.chartOptions.series[0].data.map(

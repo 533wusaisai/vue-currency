@@ -14,7 +14,7 @@
           :key="item.path"
           @click="() => $router.push({ path: item.path, query: $route.query })"
         >
-          <a-icon :type="item.meta.icon" v-if="!item.meta.icon" />
+          <a-icon :type="item.meta.icon" v-if="item.meta.icon" />
           <span>{{ item.meta.title }}</span>
         </a-menu-item>
         <sub-menu v-else :menu-info="item" :key="item.path" />
