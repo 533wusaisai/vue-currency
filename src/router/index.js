@@ -51,6 +51,17 @@ const routes = [
         path: "/",
         redirect: "/dashboard/analysis"
       },
+      // UI组件
+      {
+        path: "/ui",
+        name: "UI",
+        component: () =>
+          import(/* webpaackChunkName: ui */ "../packages/index"),
+        meta: {
+          icon: "user",
+          title: "UI组件"
+        }
+      },
       {
         path: "/dashboard",
         name: "dashboard",
