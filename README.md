@@ -1,4 +1,4 @@
-# ant-design-pro
+# vue-currency
 
 ## Project setup
 ```
